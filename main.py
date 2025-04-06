@@ -8,7 +8,7 @@ app = FastAPI()
 
 @app.get("/")
 def home():
-    return {"message": "Reel Downloader API running without uvicorn"}
+    return {"message": "Reel Downloader API running 🎬"}
 
 @app.get("/download")
 def download_reel(url: str = Query(...)):
@@ -30,10 +30,3 @@ def download_reel(url: str = Query(...)):
     finally:
         if os.path.exists(output_filename):
             os.remove(output_filename)
-
-if __name__ == "__main__":
-    from fastapi.middleware.wsgi import WSGIMiddleware
-    from werkzeug.serving import run_simple
-
-    app_wsgi = WSGIMiddleware(app)
-    run_simple("0.0.0.0", 8000, app_wsgi)
